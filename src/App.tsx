@@ -1,20 +1,32 @@
 import { useState } from "react";
-import RangeInput from "./RangeInput";
+import RangeInput from "./components/RangeInput";
+
+function calculateMorgage(
+  loanAmount: number,
+  interestRate: number,
+  repaymentTime: number
+) {
+  const monthlyInterest = interestRate / 100 / 12;
+  const totalMonths = repaymentTime * 12;
+  return (
+    loanAmount *
+    ((monthlyInterest * (1 + monthlyInterest) ** totalMonths) /
+      ((1 + monthlyInterest) ** totalMonths - 1))
+  );
+}
 
 function App() {
   const [purchasePrice, setPurchasePrice] = useState(450_000);
   const [downPayment, setDownPayment] = useState(135_000);
   const [repaymentTime, setRepaymentTime] = useState(25);
   const [interestRate, setInterestRate] = useState(3);
-
   const loanAmount = Math.max(purchasePrice - downPayment, 0);
-  const monthlyInterest = interestRate / 100 / 12;
-  const totalMonths = repaymentTime * 12;
 
-  const estimatedPerMonth =
-    loanAmount *
-    ((monthlyInterest * (1 + monthlyInterest) ** totalMonths) /
-      ((1 + monthlyInterest) ** totalMonths - 1));
+  const estimatedPerMonth = calculateMorgage(
+    loanAmount,
+    interestRate,
+    repaymentTime
+  );
 
   return (
     <div className="flex h-screen text-lg">
