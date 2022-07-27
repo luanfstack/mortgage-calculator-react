@@ -9,6 +9,8 @@ Built with [Vite](https://vitejs.dev/), [React](https://reactjs.org) and [Tailwi
 
 ## Live demo
 
+https://golden-truffle-ebf291.netlify.app/
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)

@@ -24,24 +24,25 @@ function App() {
         </div>
         <div>
           <label className="block space-y-4">
-            Purchase price: <b>${purchasePrice}</b>
+            Purchase price: <b>${purchasePrice.toLocaleString()}</b>
             <RangeInput
               value={purchasePrice}
               step={5_000}
               min={0}
-              max={1_000_000}
+              max={995_000}
               set={setPurchasePrice}
             />
           </label>
         </div>
         <div>
           <label className="block space-y-4">
-            Down payment: <b>${Math.min(downPayment, purchasePrice)}</b>
+            Down payment:{" "}
+            <b>${Math.min(downPayment, purchasePrice).toLocaleString()}</b>
             <RangeInput
               value={Math.min(downPayment, purchasePrice)}
               step={5_000}
               min={0}
-              max={1_000_000}
+              max={955_000}
               set={setDownPayment}
             />
           </label>
@@ -76,13 +77,15 @@ function App() {
         <div className="space-y-2">
           <div className="block">Loan amount</div>
           <div>
-            <b className="text-xl">${loanAmount}</b>
+            <b className="text-xl">${loanAmount.toLocaleString()}</b>
           </div>
         </div>
         <div className="space-y-2">
           <div className="block">Estimated pr. month:</div>
           <div>
-            <b className="text-xl">${estimatedPerMonth.toFixed(2)}</b>
+            <b className="text-xl">
+              ${(+estimatedPerMonth.toFixed(2)).toLocaleString()}
+            </b>
           </div>
         </div>
       </div>
